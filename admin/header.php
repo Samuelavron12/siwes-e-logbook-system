@@ -65,6 +65,11 @@ if($_SESSION['role'] != 'admin'){
                     All Logs
                 </a>
             </li>
+            <li>
+                <a href="assign-supervisor.php">
+                    Assign Supervisor
+                </a>
+            </li>
 
             <li>
                 <a href="../auth/logout.php">

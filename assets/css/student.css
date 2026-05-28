@@ -397,3 +397,405 @@ table a:hover{
     background: #770606;
     text-decoration: none;
 }
+/* ===============================
+   PROFILE PAGE
+================================ */
+
+/* MAIN CONTAINER */
+
+.profile-display{
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+/* TOP SECTION */
+
+.profile-top{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    margin-bottom: 30px;
+}
+
+/* PROFILE IMAGE */
+
+.profile-top img{
+
+    width: 140px;
+
+    height: 140px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #2563eb;
+}
+
+/* NAME */
+
+.profile-info h2{
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+    color: #111827;
+}
+
+/* MATRIC */
+
+.profile-info p{
+
+    color: #6b7280;
+
+    font-size: 16px;
+}
+
+/* GRID */
+
+.profile-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+/* CARDS */
+
+.profile-card{
+
+    background: #f9fafb;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border-left: 5px solid #2563eb;
+}
+
+/* CARD TITLE */
+
+.profile-card h3{
+
+    margin-bottom: 20px;
+
+    color: #111827;
+}
+
+/* PROFILE TEXT */
+
+.profile-card p{
+
+    margin-bottom: 12px;
+
+    line-height: 1.6;
+
+    color: #374151;
+}
+
+/* EDIT BUTTON */
+
+.edit-profile-btn{
+
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 14px 25px;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+
+.edit-profile-btn:hover{
+
+    background: #1d4ed8;
+}
+/* ==========================
+   EDIT PROFILE
+========================== */
+
+.profile-edit-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 25px;
+
+    margin-top: 25px;
+
+    margin-bottom: 25px;
+}
+
+/* CARD */
+
+.edit-card{
+
+    background: #f9fafb;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border-left: 5px solid #2563eb;
+}
+
+/* TITLE */
+
+.edit-card h3{
+
+    margin-bottom: 20px;
+
+    color: #111827;
+}
+
+/* INPUTS */
+
+.edit-card input,
+.edit-card textarea{
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+}
+
+/* TEXTAREA */
+
+.edit-card textarea{
+
+    height: 120px;
+
+    resize: none;
+}
+
+/* BUTTON */
+
+.update-profile-btn{
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+
+.update-profile-btn:hover{
+
+    background: #1d4ed8;
+}
+
+/* ==========================
+   PROFILE FORM
+========================== */
+
+.profile-form-container{
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.profile-form-container h2{
+
+    margin-bottom: 25px;
+
+    color: #111827;
+}
+
+/* STEP TITLE */
+
+.step-form h3{
+
+    margin-bottom: 20px;
+
+    color: #2563eb;
+}
+
+/* GRID */
+
+.profile-form-grid{
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+/* INPUTS */
+
+.profile-form-grid input,
+.profile-form-grid select{
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+}
+
+/* TEXTAREA */
+
+.full-width-textarea{
+
+    width: 100%;
+
+    height: 120px;
+
+    padding: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    resize: none;
+
+    margin-bottom: 20px;
+}
+
+/* FILE */
+
+.passport-upload{
+
+    margin-bottom: 20px;
+}
+
+/* BUTTON */
+
+.profile-next-btn{
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+
+.profile-next-btn:hover{
+
+    background: #1d4ed8;
+}
+
+/* STEP CONTROL */
+
+.step-form{
+
+    display: none;
+}
+
+.active-step{
+
+    display: block;
+}
+/* ==========================
+   NOTIFICATIONS
+========================== */
+
+.notification-container{
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+/* CARD */
+
+.notification-card{
+
+    background: #f9fafb;
+
+    padding: 18px;
+
+    border-left: 5px solid #2563eb;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+}
+
+/* MESSAGE */
+
+.notification-card p{
+
+    margin-bottom: 8px;
+
+    color: #111827;
+}
+
+/* DATE */
+
+.notification-card small{
+
+    color: #6b7280;
+}

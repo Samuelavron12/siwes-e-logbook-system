@@ -20,7 +20,7 @@ if($_SESSION['role'] != 'student'){
     <title>Student Dashboard</title>
 
     <link rel="stylesheet"
-          href="../assets/css/student.css?v=<?php echo time(); ?>">
+      href="../assets/css/student.css?v=<?php echo time(); ?>">
 
 </head>
 <body>

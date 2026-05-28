@@ -311,3 +311,30 @@ setInterval(updateClock, 1000);
 <?php
 require_once 'footer.php';
 ?>
+
+
+
+
+
+
+
+
+super
+
+
+<?php
+require_once 'header.php';
+require_once '../config/db.php';
+
+$query = $conn->query("
+    SELECT
+    log_entries.*,
+    users.full_name
+
+    FROM log_entries
+
+    INNER JOIN users
+    ON log_entries.student_id = users.user_id
+
+    ORDER BY log_entries.created_at DESC
+");

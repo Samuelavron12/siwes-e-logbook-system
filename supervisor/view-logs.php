@@ -2,7 +2,10 @@
 require_once 'header.php';
 require_once '../config/db.php';
 
+$supervisor_id = $_SESSION['user_id'];
+
 $query = $conn->query("
+
     SELECT
     log_entries.*,
     users.full_name
@@ -11,6 +14,11 @@ $query = $conn->query("
 
     INNER JOIN users
     ON log_entries.student_id = users.user_id
+
+    INNER JOIN student_supervisors
+    ON users.user_id = student_supervisors.student_id
+
+    WHERE student_supervisors.supervisor_id = '$supervisor_id'
 
     ORDER BY log_entries.created_at DESC
 ");

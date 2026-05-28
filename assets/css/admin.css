@@ -131,3 +131,62 @@ table td{
     text-decoration: none;
     font-size: 14px;
 }
+
+/* ASSIGN FORM */
+
+.table-container form{
+
+    max-width: 600px;
+}
+
+/* LABEL */
+
+.table-container label{
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+}
+
+/* SELECT */
+
+.table-container select{
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+}
+
+/* BUTTON */
+
+.table-container button{
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+
+.table-container button:hover{
+
+    background: #1d4ed8;
+}
