@@ -4,30 +4,43 @@ require_once '../config/notification.php';
 
 if(isset($_GET['id'])){
 
-    $log_id = $_GET['id'];
+    $id = $_GET['id'];
 
-    /* APPROVE */
+    /* APPROVE LOG */
 
-   /* $conn->query("
+    mysqli_query(
+
+        $conn,
+
+        "
+
         UPDATE log_entries
+
         SET status = 'approved'
-        WHERE log_id = '$log_id'
-    ");
-*/
-    $conn->query("
-    UPDATE log_entries
-    SET status = 'approved'
-    WHERE id = '$id'
-    ");
-    /* GET STUDENT */
 
-    $get = $conn->query("
-        SELECT student_id
-        FROM log_entries
         WHERE id = '$id'
-    ");
 
-    $row = $get->fetch_assoc();
+        "
+    );
+
+    /* GET STUDENT ID */
+
+    $student_query = mysqli_query(
+
+        $conn,
+
+        "
+
+        SELECT student_id
+
+        FROM log_entries
+
+        WHERE id = '$id'
+
+        "
+    );
+
+    $student = mysqli_fetch_assoc($student_query);
 
     /* CREATE NOTIFICATION */
 
@@ -35,11 +48,9 @@ if(isset($_GET['id'])){
 
         $conn,
 
-        $row['student_id'],
+        $student['student_id'],
 
-        'Your log entry was approved.',
-
-        'approval'
+        'Your log entry was approved.'
     );
 
     header("Location: view-logs.php");

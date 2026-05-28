@@ -3,27 +3,21 @@
 function createNotification(
     $conn,
     $user_id,
-    $message,
-    $type = "general"
+    $message
 ){
 
-    $stmt = $conn->prepare("
+    $sql = "
         INSERT INTO notifications(
             user_id,
-            message,
-            type
+            message
         )
 
-        VALUES(?,?,?)
-    ");
+        VALUES(
+            '$user_id',
+            '$message'
+        )
+    ";
 
-    $stmt->bind_param(
-        "iss",
-        $user_id,
-        $message,
-        $type
-    );
-
-    return $stmt->execute();
+    mysqli_query($conn, $sql);
 }
 ?>

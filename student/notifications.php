@@ -4,42 +4,57 @@ require_once '../config/db.php';
 
 $user_id = $_SESSION['user_id'];
 
-/* MARK AS READ */
+/* FETCH NOTIFICATIONS */
 
-$conn->query("
-    UPDATE notifications
-    SET is_read = 1
+$query = mysqli_query(
+
+    $conn,
+
+    "
+
+    SELECT *
+
+    FROM notifications
+
     WHERE user_id = '$user_id'
-");
 
-/* FETCH */
+    ORDER BY notification_id DESC
 
-$query = $conn->query("
-    SELECT * FROM notifications
-    WHERE user_id = '$user_id'
-    ORDER BY created_at DESC
-");
+    "
+);
 ?>
 
 <div class="notification-container">
 
     <h2>Notifications</h2>
 
-    <?php while($row = $query->fetch_assoc()): ?>
+    <?php if(mysqli_num_rows($query) > 0): ?>
 
-        <div class="notification-card">
+        <?php while($row = mysqli_fetch_assoc($query)): ?>
 
-            <p>
-                <?php echo $row['message']; ?>
-            </p>
+            <div class="notification-card">
 
-            <small>
-                <?php echo $row['created_at']; ?>
-            </small>
+                <p>
+                    <?php echo $row['message']; ?>
+                </p>
+
+                <small>
+                    <?php echo $row['created_at']; ?>
+                </small>
+
+            </div>
+
+        <?php endwhile; ?>
+
+    <?php else: ?>
+
+        <div class="notification-empty">
+
+            No notifications available.
 
         </div>
 
-    <?php endwhile; ?>
+    <?php endif; ?>
 
 </div>
 

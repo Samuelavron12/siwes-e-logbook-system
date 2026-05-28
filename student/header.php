@@ -25,11 +25,33 @@ if($_SESSION['role'] != 'student'){
 </head>
 <body>
 
+<!-- MOBILE NAVBAR -->
+
+<div class="mobile-navbar">
+
+    <!-- LOGO -->
+
+    <div class="mobile-logo">
+
+        SIWES System
+
+    </div>
+
+    <!-- HAMBURGER -->
+
+    <div class="menu-toggle" id="menuToggle">
+
+        ☰
+
+    </div>
+
+</div>
+
 <div class="dashboard-container">
 
     <!-- SIDEBAR -->
 
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
 
         <div class="logo">
             <h2>SIWES</h2>
@@ -53,3 +75,5 @@ if($_SESSION['role'] != 'student'){
     <!-- MAIN CONTENT -->
 
     <div class="main-content">
+
+    

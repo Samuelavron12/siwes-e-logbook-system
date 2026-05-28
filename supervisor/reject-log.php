@@ -2,40 +2,58 @@
 require_once '../config/db.php';
 require_once '../config/notification.php';
 
-$log_id = $_GET['log_id'] ?? null;
+if(isset($_GET['id'])){
 
-if (!$log_id) {
-    die("Log ID not provided");
+    $id = $_GET['id'];
+
+    /* REJECT LOG */
+
+    mysqli_query(
+
+        $conn,
+
+        "
+
+        UPDATE log_entries
+
+        SET status = 'rejected'
+
+        WHERE id = '$id'
+
+        "
+    );
+
+    /* GET STUDENT ID */
+
+    $student_query = mysqli_query(
+
+        $conn,
+
+        "
+
+        SELECT student_id
+
+        FROM log_entries
+
+        WHERE id = '$id'
+
+        "
+    );
+
+    $student = mysqli_fetch_assoc($student_query);
+
+    /* CREATE NOTIFICATION */
+
+    createNotification(
+
+        $conn,
+
+        $student['student_id'],
+
+        'Your log entry was rejected.'
+    );
+
+    header("Location: view-logs.php");
+    exit();
 }
-
-/* UPDATE STATUS */
-$update = $conn->query("
-    UPDATE log_entries 
-    SET status = 'rejected'
-    WHERE log_id = '$log_id'
-");
-
-/* GET STUDENT */
-$get = $conn->query("
-    SELECT student_id 
-    FROM log_entries 
-    WHERE log_id = '$log_id'
-");
-
-$row = $get->fetch_assoc();
-
-if (!$row) {
-    die("Log not found or invalid log_id");
-}
-
-/* CREATE NOTIFICATION */
-createNotification(
-    $conn,
-    $row['student_id'],
-    'Your log entry was rejected.',
-    'rejection'
-);
-
-header("Location: view-logs.php");
-exit();
 ?>

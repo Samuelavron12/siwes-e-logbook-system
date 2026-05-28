@@ -764,9 +764,20 @@ table a:hover{
 
     padding: 30px;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
     box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+
+    width: 100%;
+}
+
+/* TITLE */
+
+.notification-container h2{
+
+    margin-bottom: 25px;
+
+    color: #111827;
 }
 
 /* CARD */
@@ -777,11 +788,22 @@ table a:hover{
 
     padding: 18px;
 
-    border-left: 5px solid #2563eb;
+    border-left: 5px solid #0b6623;
 
     border-radius: 10px;
 
     margin-bottom: 18px;
+
+    transition: 0.3s;
+}
+
+/* HOVER */
+
+.notification-card:hover{
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
 /* MESSAGE */
@@ -791,6 +813,8 @@ table a:hover{
     margin-bottom: 8px;
 
     color: #111827;
+
+    line-height: 1.6;
 }
 
 /* DATE */
@@ -798,4 +822,399 @@ table a:hover{
 .notification-card small{
 
     color: #6b7280;
+
+    font-size: 13px;
+}
+
+/* EMPTY */
+
+.notification-empty{
+
+    background: #f3f4f6;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+/* =========================================
+   MOBILE NAVBAR
+========================================= */
+
+.mobile-navbar{
+    display: none;
+}
+
+/* =========================================
+   PHONE DEVICES
+========================================= */
+
+@media screen and (max-width: 768px){
+
+    body{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* MOBILE NAVBAR */
+
+    .mobile-navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #0b6623;
+        color: white;
+        padding: 15px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .mobile-logo{
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .menu-toggle{
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+        position: fixed;
+        left: -260px;
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        z-index: 999;
+        transition: 0.3s;
+    }
+
+    .show-sidebar{
+        left: 0;
+    }
+
+    /* MAIN CONTENT */
+
+    .main-content{
+        width: 100%;
+        margin-left: 0;
+        padding: 80px 15px 20px;
+        height: auto;
+    }
+
+    /* HEADER */
+
+    .dashboard-header{
+        height: auto;
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .welcome-section{
+        font-size: 15px;
+    }
+
+    .welcome-section p{
+        font-size: 12px;
+    }
+
+    .datetime-section{
+        font-size: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    /* DASHBOARD CARDS */
+
+    .cards-section{
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card{
+        height: 110px;
+    }
+
+    .card h3{
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .card p{
+        font-size: 24px;
+    }
+
+    /* SLIDER */
+
+    .slider-container{
+        height: auto;
+    }
+
+    .slides img{
+        height: 250px;
+    }
+
+    .slide-text{
+        width: 90%;
+        left: 5%;
+        bottom: 20px;
+        padding: 15px;
+    }
+
+    .slide-text h2{
+        font-size: 18px;
+    }
+
+    .slide-text p{
+        font-size: 13px;
+    }
+
+    /* TABLES */
+
+    .log-container{
+        overflow-x: auto;
+    }
+
+    table{
+        min-width: 700px;
+    }
+
+    /* PROFILE */
+
+    .profile-top{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-grid,
+    .profile-edit-grid,
+    .profile-form-grid{
+        grid-template-columns: 1fr;
+    }
+
+    /* NOTIFICATIONS */
+
+    .notification-container{
+        padding: 20px;
+    }
+
+    .notification-card{
+        padding: 15px;
+    }
+
+    .notification-card p{
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* FORMS */
+
+    .form-container{
+        height: auto;
+    }
+
+    /* NOTIFICATION PAGE */
+
+    .notification-container{
+
+        width: 100%;
+
+        padding: 18px;
+
+        border-radius: 10px;
+
+        overflow: hidden;
+    }
+
+    /* CARD */
+
+    .notification-card{
+
+        width: 100%;
+
+        padding: 15px;
+
+        margin-bottom: 15px;
+
+        border-radius: 10px;
+
+        word-wrap: break-word;
+    }
+
+    /* MESSAGE */
+
+    .notification-card p{
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+    /* DATE */
+
+    .notification-card small{
+
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   TABLET DEVICES
+========================================= */
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+
+    body{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* MOBILE NAVBAR */
+
+    .mobile-navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #0b6623;
+        color: white;
+        padding: 18px 25px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .mobile-logo{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .menu-toggle{
+        font-size: 32px;
+        cursor: pointer;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar{
+        position: fixed;
+        left: -270px;
+        top: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 999;
+        transition: 0.3s;
+    }
+
+    .show-sidebar{
+        left: 0;
+    }
+
+    /* MAIN CONTENT */
+
+    .main-content{
+        margin-left: 0;
+        width: 100%;
+        padding: 90px 20px 20px;
+        height: auto;
+    }
+
+    /* HEADER */
+
+    .dashboard-header{
+        height: auto;
+        padding: 18px 20px;
+    }
+
+    .welcome-section{
+        font-size: 16px;
+    }
+
+    .datetime-section{
+        font-size: 14px;
+    }
+
+    /* DASHBOARD CARDS */
+
+    .cards-section{
+        height: auto;
+        grid-template-columns: repeat(2,1fr);
+        gap: 18px;
+    }
+
+    .card{
+        height: 120px;
+    }
+
+    /* SLIDER */
+
+    .slider-container{
+        height: auto;
+    }
+
+    .slides img{
+        height: 350px;
+    }
+
+    .slide-text{
+        width: 60%;
+    }
+
+    /* PROFILE */
+
+    .profile-grid,
+    .profile-edit-grid,
+    .profile-form-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    /* NOTIFICATIONS */
+
+    .notification-container{
+        padding: 25px;
+    }
+
+    .notification-card{
+        padding: 18px;
+    }
+
+    /* TABLE */
+
+    .log-container{
+        overflow-x: auto;
+    }
+
+    table{
+        min-width: 800px;
+    }
+    /* NOTIFICATION PAGE */
+
+.notification-container{
+
+    width: 100%;
+
+    padding: 25px;
+}
+
+/* CARD */
+
+.notification-card{
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+}
 }
