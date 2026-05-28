@@ -1,0 +1,313 @@
+<?php
+require_once '../config/config.php';
+require_once '../includes/auth.php';
+
+// Ensure Only Students Access
+if($_SESSION['role'] != 'student'){
+    header("Location: ../login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="../assets/css/student.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <div class="logo">
+            <h2>SIWES</h2>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.php">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="add-log.php">
+                    Add Log Entry
+                </a>
+            </li>
+
+            <li>
+                <a href="view-logs.php">
+                    View Logs
+                </a>
+            </li>
+
+            <li>
+                <a href="weekly-evidence.php">
+                    Weekly Evidence
+                </a>
+            </li>
+
+            <li>
+                <a href="reports.php">
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="notifications.php">
+                    Notifications
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.php">
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="settings.php">
+                    Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="../auth/logout.php">
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+
+
+
+
+
+
+
+
+
+    <?php
+require_once 'header.php';
+require_once '../config/db.php';
+
+$student_id = $_SESSION['user_id'];
+
+/* TOTAL LOGS */
+$total_logs_query = $conn->query("
+    SELECT COUNT(*) AS total_logs 
+    FROM logbooks 
+    WHERE student_id = '$student_id'
+");
+
+$total_logs = $total_logs_query->fetch_assoc()['total_logs'];
+
+/* PENDING LOGS */
+$pending_logs_query = $conn->query("
+    SELECT COUNT(*) AS pending_logs 
+    FROM logbooks 
+    WHERE student_id = '$student_id'
+    AND status = 'pending'
+");
+
+$pending_logs = $pending_logs_query->fetch_assoc()['pending_logs'];
+
+/* APPROVED LOGS */
+$approved_logs_query = $conn->query("
+    SELECT COUNT(*) AS approved_logs 
+    FROM logbooks 
+    WHERE student_id = '$student_id'
+    AND status = 'approved'
+");
+
+$approved_logs = $approved_logs_query->fetch_assoc()['approved_logs'];
+
+/* WEEKLY EVIDENCE */
+$weekly_evidence_query = $conn->query("
+    SELECT COUNT(*) AS total_evidence 
+    FROM weekly_evidence 
+    WHERE student_id = '$student_id'
+");
+
+$total_evidence = $weekly_evidence_query->fetch_assoc()['total_evidence'];
+
+$current_day = date("l");
+$current_date = date("F d, Y");
+$current_time = date("h:i A");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/student.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+<!-- TOP DASHBOARD SECTION -->
+
+<div class="dashboard-top">
+
+    <!-- LEFT CARDS -->
+
+    <div class="stats-cards">
+
+        <div class="card">
+            <h3>Total Logs</h3>
+            <p><?php echo $total_logs; ?></p>
+        </div>
+
+        <div class="card">
+            <h3>Pending Logs</h3>
+            <p><?php echo $pending_logs; ?></p>
+        </div>
+
+        <div class="card">
+            <h3>Approved Logs</h3>
+            <p><?php echo $approved_logs; ?></p>
+        </div>
+
+        <div class="card">
+            <h3>Weekly Evidence</h3>
+            <p><?php echo $total_evidence; ?></p>
+        </div>
+
+    </div>
+
+    <!-- RIGHT WELCOME CARD -->
+
+    <div class="welcome-card">
+
+        <div>
+            <h1>
+                Welcome,
+                <?php echo $_SESSION['full_name']; ?>
+            </h1>
+
+            <p>
+                SIWES Student Dashboard
+            </p>
+        </div>
+
+        <div class="date-time">
+
+            <h2><?php echo $current_day; ?></h2>
+
+            <p><?php echo $current_date; ?></p>
+
+            <h3 id="live-clock">
+                <?php echo $current_time; ?>
+            </h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- NEWS SLIDER SECTION -->
+
+<div class="slider-section">
+
+    <div class="slider">
+
+        <a href="https://www.nuc.edu.ng/" target="_blank">
+
+            <img src="../assets/images/slider1.jpg">
+
+            <div class="slide-caption">
+                Latest SIWES Updates From NUC
+            </div>
+
+        </a>
+
+        <a href="https://www.itf.gov.ng/" target="_blank">
+
+            <img src="../assets/images/slider2.jpg">
+
+            <div class="slide-caption">
+                Industrial Training Fund News
+            </div>
+
+        </a>
+
+        <a href="https://www.jamb.gov.ng/" target="_blank">
+
+            <img src="../assets/images/slider3.jpg">
+
+            <div class="slide-caption">
+                Nigerian Education Trends
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+let currentSlide = 0;
+
+const slides = document.querySelectorAll(".slider a");
+
+function showSlide(index){
+
+    slides.forEach(slide => {
+        slide.style.display = "none";
+    });
+
+    slides[index].style.display = "block";
+}
+
+function nextSlide(){
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+}
+
+showSlide(currentSlide);
+
+setInterval(nextSlide, 5000);
+
+/* LIVE CLOCK */
+
+function updateClock(){
+
+    const now = new Date();
+
+    const time = now.toLocaleTimeString();
+
+    document.getElementById("live-clock").innerHTML = time;
+}
+
+setInterval(updateClock, 1000);
+
+</script>
+
+<?php
+require_once 'footer.php';
+?>

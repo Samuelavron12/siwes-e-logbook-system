@@ -1,0 +1,255 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* =========================
+   UNIFIED CARD CONTAINERS
+   (ALL AUTH PAGES)
+========================= */
+.login-container,
+.register-container,
+.otp-container,
+body > form {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    text-align: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h2 {
+    margin-bottom: 18px;
+    color: #111827;
+    font-size: 22px;
+}
+
+/* =========================
+   INPUT FIELDS (ALL)
+========================= */
+input {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* OTP special style */
+.otp-input {
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 6px;
+    font-weight: bold;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* spacing for paragraphs like register page */
+p {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #374151;
+}
+
+/* =========================
+   SUCCESS & ERROR MESSAGES
+========================= */
+.success-message,
+.success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* =========================
+   TABLET (1024px and below)
+========================= */
+@media (max-width: 1024px) {
+
+    body {
+        padding: 25px;
+    }
+
+    .login-container,
+    .register-container,
+    .otp-container,
+    body > form {
+        max-width: 450px;
+        padding: 28px 22px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+/* =========================
+   TABLET (768px and below)
+========================= */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+        align-items: center;
+    }
+
+    .login-container,
+    .register-container,
+    .otp-container,
+    body > form {
+        max-width: 380px;
+        padding: 25px 20px;
+        border-radius: 12px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input {
+        padding: 11px 12px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    a {
+        font-size: 13px;
+    }
+}
+
+/* =========================
+   MOBILE (480px and below)
+========================= */
+@media (max-width: 480px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .login-container,
+    .register-container,
+    .otp-container,
+    body > form {
+        max-width: 100%;
+        padding: 22px 16px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+}
