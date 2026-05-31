@@ -30,34 +30,22 @@ $result = $conn->query("
             <th>Supervisor Comment</th>
             <th>Actions</th>
         </tr>
-
         <?php while($row = $result->fetch_assoc()): ?>
-
         <tr>
-
             <td><?php echo $row['log_date']; ?></td>
-
             <td><?php echo $row['title']; ?></td>
-
             <td><?php echo $row['activity']; ?></td>
-
-            <td>
-                <?php echo $row['status']; ?>
-            </td>
+            <td><?php echo $row['status']; ?></td>
 
             <td>
 
                 <?php if($row['attachment']): ?>
-
                     <a href="../uploads/<?php echo $row['attachment']; ?>"
                        target="_blank">
                        View File
                     </a>
-
                 <?php else: ?>
-
                     No File
-
                 <?php endif; ?>
 
             </td>
@@ -70,24 +58,13 @@ $result = $conn->query("
             </td>
             <td class="actions">    
                 <!-- EDIT -->
-                <a class="edit-btn"
-                href="edit-log.php?id=<?php echo $row['id']; ?>">
-                Edit
-                </a>
+                <a class="edit-btn"href="edit-log.php?id=<?php echo $row['id']; ?>"> Edit </a>
                 <!-- DELETE -->
-                <a class="delete-btn"
-                href="delete-log.php?id=<?php echo $row['id']; ?>"
-                onclick="return confirm('Delete this log entry?')">
-                Delete
-                </a>
+                <a class="delete-btn" href="delete-log.php?id=<?php echo $row['id']; ?>"  onclick="return confirm('Delete this log entry?')">  Delete </a>
             </td>
-
         </tr>
-
         <?php endwhile; ?>
-
     </table>
-
 </div>
 
 <?php

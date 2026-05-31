@@ -12,49 +12,21 @@ $query = $conn->query("
 $row = $query->fetch_assoc();
 ?>
 
+<!-------- body ----------->
 <div class="form-container">
-
     <h2>Edit Log Entry</h2>
-
-    <form action="update-log.php"
-          method="POST">
-
-        <input type="hidden"
-               name="id"
-               value="<?php echo $row['id']; ?>">
-
+    <form action="update-log.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
         <!-- DATE -->
-
         <label>Log Date</label>
-
-        <input type="date"
-               name="log_date"
-               value="<?php echo $row['log_date']; ?>"
-               required>
-
+        <input type="date" name="log_date" value="<?php echo $row['log_date']; ?>" required>
         <!-- TITLE -->
-
         <label>Title</label>
-
-        <input type="text"
-               name="title"
-               value="<?php echo $row['title']; ?>"
-               required>
-
+        <input type="text" name="title" value="<?php echo $row['title']; ?>" required>
         <!-- ACTIVITY -->
-
         <label>Activity</label>
-
-        <textarea name="activity"
-                  rows="5"
-                  required><?php echo $row['activity']; ?></textarea>
-
-        <button type="submit"
-                name="update_log">
-
-            Update Log
-
-        </button>
+        <textarea name="activity" rows="5" required><?php echo $row['activity']; ?></textarea>
+        <button type="submit" name="update_log"> Update Log </button>
 
     </form>
 

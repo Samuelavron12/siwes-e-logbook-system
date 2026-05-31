@@ -26,10 +26,10 @@ function sendOTP($email, $otp_code){
         // Your App Password
         $mail->Password = 'szjq woaq exqq whfo';  // app acount password. without this the whole process won't work
 
-        // Encryption
+        // Encryption protocol
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
-        // Gmail Port
+        // Gmail Port  for connection
         $mail->Port = 587;
 
         // Sender
@@ -41,7 +41,7 @@ function sendOTP($email, $otp_code){
         // Receiver
         $mail->addAddress($email);
 
-        // Email Format
+        // Email Format  to be shown  in the message sent
         $mail->isHTML(true);
 
         // Email Subject
@@ -56,6 +56,8 @@ function sendOTP($email, $otp_code){
             <h1>$otp_code</h1>
 
             <p>This code expires in 10 minutes.</p>
+            
+            <p>contact our team for further issues on verification.</p>
         ";
 
         // Send Email

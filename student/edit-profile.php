@@ -11,7 +11,7 @@ $query = $conn->query("
 
 $profile = $query->fetch_assoc();
 ?>
-
+<!----------html code section for the editing process----->
 <div class="profile-form-container">
 
     <h2>Edit Profile</h2>
@@ -19,87 +19,34 @@ $profile = $query->fetch_assoc();
     <form action="update-profile.php"
           method="POST">
 
-        <input type="hidden"
-               name="profile_id"
-               value="<?php echo $profile['profile_id']; ?>">
-
+        <input type="hidden"name="profile_id" value="<?php echo $profile['profile_id']; ?>">
         <!-- GRID -->
-
         <div class="profile-edit-grid">
+            <!----------- Left side for acaddemics ----------->
+              <div class="edit-card">
+       
+                     <h3>Academic Details</h3>
+                     <input type="text" name="matric_no" value="<?php echo $profile['matric_no']; ?>" placeholder="Matric Number">
+                     <input type="text" name="school" value="<?php echo $profile['school']; ?>" placeholder="School">
+                     <input type="text" name="faculty" value="<?php echo $profile['faculty']; ?>" placeholder="Faculty">
+                     <input type="text" name="department" value="<?php echo $profile['department']; ?>" placeholder="Department">
+                     <input type="text" name="level" value="<?php echo $profile['level']; ?>" placeholder="Level">
+              </div>
+            <!----------- Rigtht side organization---------->
+              <div class="edit-card">
+                     <h3>Organization Details</h3>
+                     <input type="text" name="company_name" value="<?php echo $profile['company_name']; ?>"placeholder="Company Name">
+                     <textarea name="company_address" placeholder="Company Address"><?php echo $profile['company_address']; ?></textarea>
+                     <input type="text" name="industry_supervisor"value="<?php echo $profile['industry_supervisor']; ?>"  placeholder="Supervisor Name">
+                     <input type="text" name="supervisor_phone" value="<?php echo $profile['supervisor_phone']; ?>" placeholder="Supervisor Phone">
+              </div>
 
-            <!-- LEFT -->
-
-            <div class="edit-card">
-
-                <h3>Academic Details</h3>
-
-                <input type="text"
-                       name="matric_no"
-                       value="<?php echo $profile['matric_no']; ?>"
-                       placeholder="Matric Number">
-
-                <input type="text"
-                       name="school"
-                       value="<?php echo $profile['school']; ?>"
-                       placeholder="School">
-
-                <input type="text"
-                       name="faculty"
-                       value="<?php echo $profile['faculty']; ?>"
-                       placeholder="Faculty">
-
-                <input type="text"
-                       name="department"
-                       value="<?php echo $profile['department']; ?>"
-                       placeholder="Department">
-
-                <input type="text"
-                       name="level"
-                       value="<?php echo $profile['level']; ?>"
-                       placeholder="Level">
-
-            </div>
-
-            <!-- RIGHT -->
-
-            <div class="edit-card">
-
-                <h3>Organization Details</h3>
-
-                <input type="text"
-                       name="company_name"
-                       value="<?php echo $profile['company_name']; ?>"
-                       placeholder="Company Name">
-
-                <textarea name="company_address"
-                          placeholder="Company Address"><?php echo $profile['company_address']; ?></textarea>
-
-                <input type="text"
-                       name="industry_supervisor"
-                       value="<?php echo $profile['industry_supervisor']; ?>"
-                       placeholder="Supervisor Name">
-
-                <input type="text"
-                       name="supervisor_phone"
-                       value="<?php echo $profile['supervisor_phone']; ?>"
-                       placeholder="Supervisor Phone">
-
-            </div>
-
-        </div>
-
-        <!-- BUTTON -->
-
-        <button type="submit"
-                name="update_profile"
-                class="update-profile-btn">
-
+       </div>
+       <!-- BUTTON -->
+       <button type="submit" name="update_profile"  class="update-profile-btn">
             Update Profile
-
-        </button>
-
+       </button>
     </form>
-
 </div>
 
 <?php

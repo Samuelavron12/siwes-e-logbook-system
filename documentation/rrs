@@ -338,3 +338,415 @@ $query = $conn->query("
 
     ORDER BY log_entries.created_at DESC
 ");
+
+
+
+////////////////////
+pdf issues           
+////////////////////
+<?php
+
+session_start();
+
+require_once '../config/db.php';
+require_once '../tcpdf/tcpdf.php';
+
+$student_id = $_SESSION['user_id'];
+$student_name = $_SESSION['full_name'];
+
+$pdf = new TCPDF();
+
+$pdf->SetCreator('SIWES E-Logbook');
+$pdf->SetAuthor('AVRON Tech Hub');
+$pdf->SetTitle('SIWES Report');
+
+$pdf->SetMargins(15,15,15);
+
+$pdf->AddPage();
+
+// fetch student profile
+$profile_query = mysqli_query(
+
+    $conn,
+
+    "
+
+    SELECT *
+
+    FROM student_profiles
+
+    WHERE student_id='$student_id'
+
+    "
+
+);
+// cover page
+$profile = mysqli_fetch_assoc($profile_query);
+
+$pdf->SetFont('helvetica','B',22);
+
+$pdf->Cell(
+    0,
+    20,
+    'STUDENT INDUSTRIAL WORK EXPERIENCE SCHEME',
+    0,
+    1,
+    'C'
+);
+
+$pdf->SetFont('helvetica','',18);
+
+$pdf->Cell(
+    0,
+    15,
+    '(SIWES)',
+    0,
+    1,
+    'C'
+);
+
+$pdf->Ln(15);
+
+$pdf->SetFont('helvetica','B',20);
+
+$pdf->Cell(
+    0,
+    15,
+    'E-LOGBOOK REPORT',
+    0,
+    1,
+    'C'
+);
+
+// passport image
+
+$passport_path =
+"../uploads/" . $profile['passport'];
+
+if(file_exists($passport_path)){
+
+    $pdf->Image(
+        $passport_path,
+        80,
+        90,
+        45,
+        45
+    );
+}
+
+//student detail
+$pdf->Ln(80);
+
+$pdf->SetFont('helvetica','',12);
+
+$pdf->Cell(
+    0,
+    10,
+    'Student Name: '.$student_name,
+    0,
+    1
+);
+
+$pdf->Cell(
+    0,
+    10,
+    'Matric No: '.$profile['matric_no'],
+    0,
+    1
+);
+
+$pdf->Cell(
+    0,
+    10,
+    'School: '.$profile['school'],
+    0,
+    1
+);
+
+$pdf->Cell(
+    0,
+    10,
+    'Faculty: '.$profile['faculty'],
+    0,
+    1
+);
+
+$pdf->Cell(
+    0,
+    10,
+    'Department: '.$profile['department'],
+    0,
+    1
+);
+
+$pdf->Cell(
+    0,
+    10,
+    'Level: '.$profile['level'],
+    0,
+    1
+);
+
+// organization details
+
+$pdf->AddPage();
+
+$pdf->SetFont('helvetica','B',18);
+
+$pdf->Cell(
+    0,
+    15,
+    'ORGANIZATION DETAILS',
+    0,
+    1,
+    'C'
+);
+
+$pdf->Ln(10);
+
+$pdf->SetFont('helvetica','',12);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "Company Name: ".$profile['company_name']
+);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "Company Address: ".$profile['company_address']
+);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "Industry Supervisor: ".$profile['industry_supervisor']
+);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "Supervisor Phone: ".$profile['supervisor_phone']
+);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "Start Date: ".$profile['start_date']
+);
+
+$pdf->MultiCell(
+    0,
+    10,
+    "End Date: ".$profile['end_date']
+);
+
+//  weekly activity
+
+$pdf->AddPage();
+
+$pdf->SetFont('helvetica','B',18);
+
+$pdf->Cell(
+    0,
+    10,
+    'WEEKLY ACTIVITIES',
+    0,
+    1,
+    'C'
+);
+
+//  fetch student log 
+
+$logs = mysqli_query(
+
+    $conn,
+
+    "
+
+    SELECT *
+
+    FROM log_entries
+
+    WHERE student_id='$student_id'
+
+    ORDER BY log_date ASC
+
+    "
+
+);
+
+$first = mysqli_query(
+
+    $conn,
+
+    "
+
+    SELECT log_date
+
+    FROM log_entries
+
+    WHERE student_id='$student_id'
+
+    ORDER BY log_date ASC
+
+    LIMIT 1
+
+    "
+
+);
+
+$start = mysqli_fetch_assoc($first);
+
+$start_date = strtotime($start['log_date']);
+
+/*
+//weekly loops
+
+$current_week = 0;
+
+while($log = mysqli_fetch_assoc($logs)){
+
+    // entire WEEK loop code here
+
+}
+*/
+/*
+while($log = mysqli_fetch_assoc($logs)) {
+
+    $pdf->SetFont('helvetica','',11);
+
+    $pdf->MultiCell(
+        0,
+        8,
+        "Week: ".$log['log_date'].
+        "\nDate: ".$log['log_date'].
+        "\nActivity: ".$log['activity']
+    );
+
+    $pdf->Ln(3);
+}*/
+
+$current_week = 0;
+
+while ($log = mysqli_fetch_assoc($logs)) {
+
+    $week_no = date('W', strtotime($log['log_date']));
+
+    // Print new week header only when week changes
+    if ($week_no != $current_week) {
+
+        $current_week = $week_no;
+
+        $pdf->Ln(5);
+
+        $pdf->SetFont('helvetica', 'B', 14);
+        $pdf->Cell(0, 10, "WEEK $week_no", 0, 1, 'L');
+
+        // Table header
+        $pdf->SetFont('helvetica', 'B', 11);
+
+        $pdf->Cell(40, 10, 'Date', 1);
+        $pdf->Cell(150, 10, 'Activity', 1);
+        $pdf->Ln();
+    }
+
+    // Table rows
+    $pdf->SetFont('helvetica', '', 11);
+
+    $pdf->Cell(40, 10, $log['log_date'], 1);
+    $pdf->Cell(150, 10, $log['activity'], 1);
+    $pdf->Ln();
+}
+//weekly evidence
+/*
+$pdf->AddPage();
+
+$pdf->SetFont('helvetica','B',18);
+
+$pdf->Cell(
+    0,
+    15,
+    'WEEKLY EVIDENCE',
+    0,
+    1,
+    'C'
+);
+
+$evidence = mysqli_query(
+    $conn,
+    "
+    SELECT *
+    FROM weekly_evidence
+    WHERE student_id='$student_id'
+    ORDER BY week_no ASC
+    "
+);
+*/
+$evidence = mysqli_query($conn, "
+    SELECT *
+    FROM weekly_evidence
+    WHERE student_id='$student_id'
+    ORDER BY week_no ASC
+");
+
+if(mysqli_num_rows($evidence) > 0){
+
+    $current_week = 0;
+
+    while($ev = mysqli_fetch_assoc($evidence)) {
+
+        // NEW WEEK HEADER
+        if($ev['week_no'] != $current_week){
+
+            $current_week = $ev['week_no'];
+
+            $pdf->Ln(6);
+            $pdf->SetFont('helvetica','B',14);
+            $pdf->Cell(0,10,"WEEK ".$current_week,0,1,'L');
+
+            // Table header
+            $pdf->SetFont('helvetica','B',11);
+            $pdf->Cell(40,10,'Title',1);
+            $pdf->Cell(110,10,'Description',1);
+            $pdf->Cell(40,10,'Date',1);
+            $pdf->Ln();
+        }
+
+        // ROW DATA
+        $pdf->SetFont('helvetica','',10);
+
+        $pdf->Cell(40,10,$ev['title'],1);
+        $pdf->Cell(110,10,$ev['description'],1);
+        $pdf->Cell(40,10,$ev['uploaded_at'],1);
+        $pdf->Ln();
+
+        // OPTIONAL: IMAGE FILE
+        if(!empty($ev['evidence_file'])) {
+
+            $file_path = "../uploads/evidnce".$ev['evidence_file'];
+
+            if(file_exists($file_path)) {
+                $pdf->Ln(2);
+                $pdf->Image($file_path, 15, $pdf->GetY(), 50);
+                $pdf->Ln(30);
+            }
+        }
+    }
+
+} else {
+    $pdf->Cell(0,10,"No weekly evidence found",0,1);
+}
+
+//download pdf
+$pdf->Output(
+    'SIWES_Report.pdf',
+    'D'
+);
+
+$logs = mysqli_query($conn, "
+    SELECT *
+    FROM log_entries
+    WHERE student_id='$student_id'
+");

@@ -25,37 +25,19 @@ $query = mysqli_query(
 ?>
 
 <div class="notification-container">
-
     <h2>Notifications</h2>
-
     <?php if(mysqli_num_rows($query) > 0): ?>
-
         <?php while($row = mysqli_fetch_assoc($query)): ?>
-
             <div class="notification-card">
-
-                <p>
-                    <?php echo $row['message']; ?>
-                </p>
-
-                <small>
-                    <?php echo $row['created_at']; ?>
-                </small>
-
+                <p> <?php echo $row['message']; ?></p>
+                <small> <?php echo $row['created_at']; ?></small>
             </div>
-
         <?php endwhile; ?>
-
     <?php else: ?>
-
         <div class="notification-empty">
-
             No notifications available.
-
         </div>
-
     <?php endif; ?>
-
 </div>
 
 <?php

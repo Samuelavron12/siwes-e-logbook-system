@@ -59,6 +59,11 @@ if($_SESSION['role'] != 'supervisor'){
                     Logout
                 </a>
             </li>
+            <li>
+                <a href="view-evidence.php">
+                    Weekly Evidence
+                </a>
+            </li>
 
         </ul>
 

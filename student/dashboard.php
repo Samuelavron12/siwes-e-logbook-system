@@ -68,101 +68,74 @@ if($rejected_query){
 }
 
 /* WEEKLY EVIDENCE */
+$evidence_count = mysqli_fetch_assoc(
 
-$evidence_query = $conn->query("
-    SELECT COUNT(*) AS total
-    FROM weekly_evidence
-    WHERE student_id = '$student_id'
-");
+    mysqli_query(
 
-if($evidence_query){
-    $total_evidence =
-    $evidence_query->fetch_assoc()['total'];
-}
+        $conn,
+
+        "
+
+        SELECT COUNT(*) AS total
+
+        FROM weekly_evidence
+
+        WHERE student_id = '$student_id'
+
+        "
+
+    )
+
+);
 
 
 ?>
 <!-- DASHBOARD TOP -->
 
 <div class="dashboard-header">
-
     <!-- LEFT -->
-
     <div class="welcome-section">
-
-        <h2>
-            Welcome,
-            <?php echo $_SESSION['full_name']; ?>
-        </h2>
-        <p>
-        SIWES E-Logbook student Dashboard
-    </p>
-
+        <h2> Welcome, <?php echo $_SESSION['full_name']; ?> </h2>
+        <p>SIWES E-Logbook student Dashboard</p>
     </div>
-
     <!-- RIGHT -->
-
     <div class="datetime-section">
-
         <p id="day"></p>
-
         <p id="date"></p>
-
         <h3 id="clock"></h3>
-
     </div>
-
 </div>
-
 <!-- DASHBOARD CARDS -->
-
 <div class="cards-section">
-
     <div class="card">
-
         <h3>Total Logs</h3>
-
         <p><?php echo $total_logs; ?></p>
-
     </div>
-
     <div class="card">
-
         <h3>Pending Logs</h3>
-
         <p><?php echo $pending_logs; ?></p>
-
     </div>
-
     <div class="card">
-
         <h3>Approved Logs</h3>
-
         <p><?php echo $approved_logs; ?></p>
-
     </div>
     <div class="card rejected-card">
         <h3>Rejected Logs</h3>
         <p><?php echo $rejected_logs; ?></p>
     </div>
-
     <div class="card">
-
-        <h3>Weekly Evidence</h3>
-
-        <p><?php echo $total_evidence; ?></p>
-
+        <h3>Evidence</h3>
+        <p><?php echo $evidence_count['total']; ?></p>
     </div>
 
+   <!--- <div class="card">
+        <h3>Weekly Evidence</h3>
+        <p><?php echo $total_evidence; ?></p>
+    </div> ---->
 </div>
-
 <!-- IMAGE SLIDER -->
-<!-- IMAGE SLIDER -->
-
 <div class="slider-container">
-
     <!-- SLIDE 1 -->
-
     <div class="slides fade">
         <img src="../assets/images/itf.png">
         <div class="slide-text">
@@ -171,21 +144,16 @@ if($evidence_query){
             <a href="https://www.itf.gov.ng/" target="_blank"> learn more</a>
         </div>
     </div>
-
     <!-- SLIDE 2 -->
-
     <div class="slides fade">
         <img src="../assets/images/nuc.webp">
-
         <div class="slide-text">
             <h2>NUC Education News</h2>
             <p>Stay informed about university accreditation and SIWES policies.</p>
             <a href="https://www.nuc.edu.ng/" target="_blank">learn more</a>
         </div>
     </div>
-
     <!-- SLIDE 3 -->
-
     <div class="slides fade">
         <img src="../assets/images/jamb.webp">
         <div class="slide-text">
@@ -195,8 +163,6 @@ if($evidence_query){
         </div>
     </div>
 </div>
-
-
 <script>
 
 /* LIVE DATE AND TIME */
