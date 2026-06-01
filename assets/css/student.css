@@ -908,27 +908,17 @@ table a:hover{
 
 /* download css  */
 .download-report-btn{
-
     display:inline-block;
-
     background:#0b6623;
-
-    color:white;
-
+    color:#fff;
     text-decoration:none;
-
-    padding:14px 25px;
-
+    padding:12px 25px;
     border-radius:8px;
-
     font-weight:bold;
-
-    margin-bottom:20px;
 }
 
 .download-report-btn:hover{
-
-    background:#033b12;
+    background:#053b14;
 }
 /* MOBILE NAVBAR */
 .mobile-navbar{

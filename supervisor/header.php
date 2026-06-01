@@ -53,6 +53,16 @@ if($_SESSION['role'] != 'supervisor'){
                     Student Logs
                 </a>
             </li>
+            <li>
+                <a href="student.php">
+                    Assigned Students
+                </a>
+            </li>
+            <li>
+                <a href="student-progress.php">
+                    Progress Monitor
+                </a>
+            </li>
 
             <li>
                 <a href="../auth/logout.php">
