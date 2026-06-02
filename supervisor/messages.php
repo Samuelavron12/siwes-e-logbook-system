@@ -200,17 +200,7 @@ $students = mysqli_query(
 
                                 <?php else: ?>
 
-                                    <a
-
-                                    class="attachment-link"
-
-                                    href="../uploads/messages/<?php echo $file; ?>"
-
-                                    target="_blank">
-
-                                        Download File
-
-                                    </a>
+                                    <a class="attachment-link" href="../uploads/messages/<?php echo $file; ?>" target="_blank"> Download File</a>
 
                                 <?php endif; ?>
 
@@ -258,7 +248,7 @@ $students = mysqli_query(
 
                 required
 
-                placeholder="Type message..."></textarea>
+                placeholder="Enter Text Here"></textarea>
 
                 <button type="submit">
 

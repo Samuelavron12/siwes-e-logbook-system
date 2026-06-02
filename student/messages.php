@@ -114,7 +114,7 @@ $messages = mysqli_query($conn, "
 
     <input type="file" name="attachment">
 
-    <textarea name="message" placeholder="Type message..."></textarea>
+    <textarea name="message" placeholder="Enter Text Here"></textarea>
 
     <button type="submit">Send</button>
 
