@@ -1,10 +1,28 @@
 <?php
-require_once '../config/config.php';
-require_once '../includes/auth.php';
 
-if($_SESSION['role'] != 'student'){
-    header("Location: ../login.php");
-    exit();
+session_start();
+
+require_once '../config/db.php';
+
+if(isset($_SESSION['user_id'])){
+
+    $user_id = $_SESSION['user_id'];
+
+    mysqli_query(
+
+        $conn,
+
+        "
+
+        UPDATE users
+
+        SET last_login = NOW()
+
+        WHERE user_id='$user_id'
+
+        "
+
+    );
 }
 ?>
 
@@ -45,6 +63,8 @@ if($_SESSION['role'] != 'student'){
                 <li><a href="../student/notifications.php">Notifications</a></li>
                 <li><a href="../student/profile.php">Profile</a></li>
                 <li><a href="../auth/logout.php">Logout</a></li>
+                <li><a href="messages.php"> Messages</a>
+</li>
             </ul>
         </div>
         <!-- MAIN CONTENT -->

@@ -920,9 +920,235 @@ table a:hover{
 .download-report-btn:hover{
     background:#053b14;
 }
+
+.badge{
+
+    background:red;
+
+    color:white;
+
+    padding:3px 8px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    margin-left:8px;
+}
+/* ==========================
+   CHAT PAGE
+========================== */
+
+.chat-container{
+    display: flex;
+    height: calc(100vh - 120px);
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,.08);
+}
+
+.chat-users{
+    width: 250px;
+    background: #0b6623;
+    color: #fff;
+}
+
+.chat-users h3{
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.student-link{
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.chat-box{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages{
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f3f4f6;
+}
+
+.message-row{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.sent{
+    justify-content: flex-end;
+}
+
+.received{
+    justify-content: flex-start;
+}
+
+.message-bubble{
+    max-width: 70%;
+    padding: 12px;
+    border-radius: 12px;
+    word-wrap: break-word;
+}
+
+.sent .message-bubble{
+    background: #0b6623;
+    color: white;
+}
+
+.received .message-bubble{
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.message-bubble small{
+    display: block;
+    margin-top: 5px;
+    font-size: 11px;
+    opacity: .7;
+}
+
+.chat-form{
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
+.chat-form textarea{
+    flex: 1;
+    resize: none;
+    height: 60px;
+    padding: 10px;
+}
+
+.chat-form button{
+    width: 120px;
+    border: none;
+    background: #0b6623;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.chat-image{
+    margin-top:10px;
+}
+
+.chat-image img{
+
+    width:200px;
+
+    max-width:100%;
+
+    height:auto;
+
+    border-radius:10px;
+
+    border:1px solid #ddd;
+
+    cursor:pointer;
+
+    object-fit:cover;
+}
+
+
+
+
+
+
+
+
 /* MOBILE NAVBAR */
 .mobile-navbar{
     display: none;
+}
+
+
+/* GLOBAL HEADER SPACE (IMPORTANT) */
+.main-content{
+    margin-top: 60px; /* height of your header.php navbar */
+}
+
+/* CHAT TOP BAR (NOW BELOW GLOBAL HEADER) */
+.chat-topbar{
+    background:#0b6623;
+    color:white;
+    padding:12px 15px;
+    font-weight:bold;
+    border-radius:0;
+    margin-bottom:0;
+}
+
+/* CHAT AREA */
+.chat-page{
+    display:flex;
+    flex-direction:column;
+    height:calc(100vh - 120px);
+}
+
+/* MESSAGES */
+.chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+    background:#f3f4f6;
+}
+
+/* INPUT BAR */
+.chat-form{
+    display:flex;
+    gap:10px;
+    padding:10px;
+    background:white;
+    border-top:1px solid #ddd;
+}
+
+/* MESSAGE STYLE */
+.message-row{
+    display:flex;
+    margin-bottom:10px;
+}
+
+.sent{ justify-content:flex-end; }
+.received{ justify-content:flex-start; }
+
+.message-bubble{
+    max-width:70%;
+    padding:10px;
+    border-radius:12px;
+    background:white;
+}
+
+.sent .message-bubble{
+    background:#0b6623;
+    color:white;
+}
+
+/* MOBILE FIX */
+@media(max-width:768px){
+
+    .main-content{
+        margin-top: -5px;
+    }
+
+    .chat-page{
+        height:calc(100vh - 180px);
+    }
+
+    .message-bubble{
+        max-width:90%;
+    }
+
+    .chat-form textarea{
+        height:45px;
+    }
 }
 /* PHONE DEVICES */
 
@@ -1217,6 +1443,50 @@ table a:hover{
         width: 100%;
     }
 
+    /* message query  */
+    .chat-container {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .chat-users {
+        padding: 10px;
+    }
+
+    .student-link {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .chat-messages {
+        padding: 12px;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .chat-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .chat-form textarea {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .chat-form button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .chat-image img {
+        width: 160px;
+    }
+
 }
 
 /* TABLET DEVICES */
@@ -1390,4 +1660,6 @@ table a:hover{
 
         height: 60px;
     }
+    
+
 }

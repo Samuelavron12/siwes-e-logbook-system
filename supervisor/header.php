@@ -1,11 +1,28 @@
 <?php
-require_once '../config/config.php';
-require_once '../includes/auth.php';
 
-if($_SESSION['role'] != 'supervisor'){
+session_start();
 
-    header("Location: ../login.php");
-    exit();
+require_once '../config/db.php';
+
+if(isset($_SESSION['user_id'])){
+
+    $user_id = $_SESSION['user_id'];
+
+    mysqli_query(
+
+        $conn,
+
+        "
+
+        UPDATE users
+
+        SET last_login = NOW()
+
+        WHERE user_id='$user_id'
+
+        "
+
+    );
 }
 ?>
 
@@ -29,6 +46,9 @@ if($_SESSION['role'] != 'supervisor'){
 <body>
 
 <div class="dashboard-container">
+
+
+
 
     <!-- SIDEBAR -->
 
@@ -61,6 +81,11 @@ if($_SESSION['role'] != 'supervisor'){
             <li>
                 <a href="student-progress.php">
                     Progress Monitor
+                </a>
+            </li>
+            <li>
+                <a href="messages.php">
+                    Messages
                 </a>
             </li>
 
