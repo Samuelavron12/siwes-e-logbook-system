@@ -12,7 +12,7 @@ if(isset($_POST['verify_otp'])){
 
     // Check OTP
     $check = $conn->prepare("
-        SELECT user_id, otp_expiry 
+        SELECT user_ id, otp_expiry 
         FROM users 
         WHERE email = ? AND otp_code = ?
     ");
