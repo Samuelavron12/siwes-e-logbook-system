@@ -56,46 +56,20 @@ if(isset($_SESSION['user_id'])){
             <h2>ADMIN PANEL</h2>
 
         </div>
-
         <ul>
-
-            <li>
-                <a href="dashboard.php">
-                    Dashboard
-                </a>
-            </li>
-
-            <li>
-                <a href="students.php">
-                    Students
-                </a>
-            </li>
-
-            <li>
-                <a href="supervisors.php">
-                    Supervisors
-                </a>
-            </li>
-
-            <li>
-                <a href="logs.php">
-                    All Logs
-                </a>
-            </li>
-            <li>
-                <a href="assign-supervisor.php">
-                    Assign Supervisor
-                </a>
-            </li>
-
-            <li>
-                <a href="../auth/logout.php">
-                    Logout
-                </a>
-            </li>
-
+            <li><a href="dashboard.php"> Dashboard  </a> </li>
+            <li> <a href="students.php">Students </a> </li>
+            <li><a href="supervisors.php">Supervisors </a></li>
+            <li><a href="assign-supervisor.php">Assign Supervisor </a></li>
+            <li><a href="all-logs.php">All Logs</a></li>
+            <li><a href="all-evidence.php">All Weekly Evidence</a></li>
+            <li> <a href="student-profiles.php">Student Profiles </a></li>
+            <li><a href="progress-monitor.php"> Progress Monitor</a></li>
+            <li> <a href="reports.php">Reports  </a></li>
+            <li>  <a href="notifications.php"> Notifications </a></li>
+            <li><a href="audit-trail.php"> Audit Trail </a></li>
+            <li> <a href="../auth/logout.php">   Logout</a></li>
         </ul>
-
     </div>
 
     <!-- MAIN CONTENT -->

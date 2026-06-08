@@ -51,7 +51,7 @@ if(isset($_SESSION['user_id'])){
         <!-- SIDEBAR -->
         <div class="sidebar" id="sidebar">
             <div class="logo">
-                <h2>SIWES</h2>
+                <h2>student panel</h2>
             </div>
             <ul>
                 <li><a href="../student/dashboard.php">Dashboard</a></li>
@@ -60,10 +60,11 @@ if(isset($_SESSION['user_id'])){
                 <li><a href="../student/weekly-evidence.php">Weekly Evidence</a></li>
                 <li><a href="weekly-evidence-list.php">My Evidence</a></li>
                 <li><a href="../student/report.php">Reports</a></li>
+                <li><a href="messages.php"> Messages</a>
                 <li><a href="../student/notifications.php">Notifications</a></li>
                 <li><a href="../student/profile.php">Profile</a></li>
                 <li><a href="../auth/logout.php">Logout</a></li>
-                <li><a href="messages.php"> Messages</a>
+               
 </li>
             </ul>
         </div>

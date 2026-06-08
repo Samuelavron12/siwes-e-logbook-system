@@ -46,62 +46,20 @@ if(isset($_SESSION['user_id'])){
 <body>
 
 <div class="dashboard-container">
-
-
-
-
     <!-- SIDEBAR -->
-
     <div class="sidebar">
-
         <div class="logo">
-
-            <h2>Supervisor</h2>
-
+            <h2>Supervisor panel</h2>
         </div>
-
         <ul>
-
-            <li>
-                <a href="dashboard.php">
-                    Dashboard
-                </a>
-            </li>
-
-            <li>
-                <a href="view-logs.php">
-                    Student Logs
-                </a>
-            </li>
-            <li>
-                <a href="student.php">
-                    Assigned Students
-                </a>
-            </li>
-            <li>
-                <a href="student-progress.php">
-                    Progress Monitor
-                </a>
-            </li>
-            <li>
-                <a href="messages.php">
-                    Messages
-                </a>
-            </li>
-
-            <li>
-                <a href="../auth/logout.php">
-                    Logout
-                </a>
-            </li>
-            <li>
-                <a href="view-evidence.php">
-                    Weekly Evidence
-                </a>
-            </li>
-
+            <li> <a href="dashboard.php"> Dashboard </a></li>
+            <li> <a href="view-logs.php">Student Logs </a></li>
+            <li> <a href="view-evidence.php"> Weekly Evidence </a> </li>
+            <li> <a href="student.php">Assigned Students</a></li>
+            <li><a href="student-progress.php"> Progress Monitor</a> </li>
+            <li> <a href="messages.php">  Messages </a></li>
+            <li><a href="../auth/logout.php"> Logout</a></li>
         </ul>
-
     </div>
 
     <!-- MAIN CONTENT -->
