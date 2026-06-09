@@ -35,9 +35,9 @@ $user = mysqli_fetch_assoc($user_query);
 $profile_query = mysqli_query($conn, "SELECT * FROM student_profiles WHERE student_id='$student_id'");
 $profile = mysqli_fetch_assoc($profile_query);
 
-// ============================================================
+
 // PAGE 1 - COVER PAGE
-// ============================================================
+
 $pdf->AddPage();
 
 // Main Title
@@ -50,18 +50,18 @@ $pdf->SetFont('helvetica', 'B', 22);
 $pdf->Cell(0, 12, 'E-LOGBOOK REPORT', 0, 1, 'C');
 $pdf->Ln(20);
 
-// ============================================================
+
 // PASSPORT PHOTO - MOVED UP (centered)
-// ============================================================
+
 $passport = __DIR__ . "/../uploads/" . $profile['passport'];
 if (!empty($profile['passport']) && file_exists($passport)) {
     $pdf->Image($passport, 80, 95, 50, 50);
 }
 $pdf->Ln(65);
 
-// ============================================================
+
 // STUDENT DETAILS - MOVED DOWN (below the photo, separate)
-// ============================================================
+
 $pdf->SetFont('helvetica', 'B', 14);
 $pdf->Cell(0, 10, 'STUDENT DETAILS', 0, 1, 'C');
 $pdf->Ln(5);
@@ -97,9 +97,9 @@ $pdf->Cell($valueWidth, 8, $profile['gender'], 0, 1, 'L');
 $pdf->Cell($labelWidth, 8, 'Generated On:', 0, 0, 'L');
 $pdf->Cell($valueWidth, 8, date('d-m-Y h:i A'), 0, 1, 'L');
 
-// ============================================================
+
 // PAGE 2 - ORGANIZATION DETAILS
-// ============================================================
+
 $pdf->AddPage();
 
 $pdf->SetFont('helvetica', 'B', 16);
@@ -126,9 +126,7 @@ $pdf->Cell($valueWidth, 8, $profile['end_date'], 0, 1, 'L');
 $pdf->Cell($labelWidth, 8, 'Company Address:', 0, 0, 'L');
 $pdf->MultiCell($valueWidth, 8, $profile['company_address'], 0, 'L');
 
-// ============================================================
 // PAGES 3+ - WEEKLY LOGS
-// ============================================================
 
 $first_query = mysqli_query($conn, "SELECT log_date FROM log_entries WHERE student_id='$student_id' ORDER BY log_date ASC LIMIT 1");
 $first_row = mysqli_fetch_assoc($first_query);
