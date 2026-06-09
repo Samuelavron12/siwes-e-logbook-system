@@ -67,7 +67,9 @@ if(isset($_SESSION['user_id'])){
             <li><a href="progress-monitor.php"> Progress Monitor</a></li>
             <li> <a href="reports.php">Reports  </a></li>
             <li>  <a href="notifications.php"> Notifications </a></li>
+            <li><a href="announcements.php">Announcements</a></li>
             <li><a href="audit-trail.php"> Audit Trail </a></li>
+            <li><a href="system-settings.php">System Settings</a></li>
             <li> <a href="../auth/logout.php">   Logout</a></li>
         </ul>
     </div>

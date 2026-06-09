@@ -55,6 +55,7 @@ if(isset($_SESSION['user_id'])){
             </div>
             <ul>
                 <li><a href="../student/dashboard.php">Dashboard</a></li>
+                <li><a href="../student/profile.php">Profile</a></li>
                 <li><a href="../student/add-log.php">Add Log Entry</a></li>
                 <li><a href="../student/view-logs.php">View Logs</a></li>
                 <li><a href="../student/weekly-evidence.php">Weekly Evidence</a></li>
@@ -62,7 +63,7 @@ if(isset($_SESSION['user_id'])){
                 <li><a href="../student/report.php">Reports</a></li>
                 <li><a href="messages.php"> Messages</a>
                 <li><a href="../student/notifications.php">Notifications</a></li>
-                <li><a href="../student/profile.php">Profile</a></li>
+                <li><a href="announcements.php">Announcements</a></li>
                 <li><a href="../auth/logout.php">Logout</a></li>
                
 </li>

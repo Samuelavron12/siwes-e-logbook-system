@@ -25,6 +25,7 @@ body{
     left: 0;
     top: 0;
     padding-top: 20px;
+    overflow-y: auto;
 }
 
 .logo{
@@ -691,4 +692,120 @@ table td{
 .table-responsive{
 
     overflow-x:auto;
+}
+
+.settings-page{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    max-width:800px;
+}
+
+.form-group{
+
+    margin-bottom:20px;
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+}
+
+.settings-page button{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+.success-box{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:12px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+}
+
+.announcement-page{
+
+    background:#fff;
+
+    padding:20px;
+
+    border-radius:12px;
+}
+
+.announcement-page input,
+.announcement-page textarea,
+.announcement-page select{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+}
+
+.announcement-page button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+.announcement-card{
+
+    background:#f9fafb;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    border-left:4px solid #2563eb;
+
+    border-radius:8px;
 }

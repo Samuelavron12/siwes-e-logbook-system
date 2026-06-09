@@ -53,11 +53,15 @@ if(isset($_SESSION['user_id'])){
         </div>
         <ul>
             <li> <a href="dashboard.php"> Dashboard </a></li>
+            <li> <a href="profile.php"> my profile</a></li>
             <li> <a href="view-logs.php">Student Logs </a></li>
             <li> <a href="view-evidence.php"> Weekly Evidence </a> </li>
             <li> <a href="student.php">Assigned Students</a></li>
             <li><a href="student-progress.php"> Progress Monitor</a> </li>
+            <li><a href="student-evaluation.php">Student Evaluation</a></li>
+            <li> <a href="attendance-summary.php">attendance</a></li>
             <li> <a href="messages.php">  Messages </a></li>
+            <li><a href="announcements.php">Announcements</a></li>
             <li><a href="../auth/logout.php"> Logout</a></li>
         </ul>
     </div>
