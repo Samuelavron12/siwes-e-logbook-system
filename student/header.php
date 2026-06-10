@@ -56,10 +56,13 @@ if(isset($_SESSION['user_id'])){
             <ul>
                 <li><a href="../student/dashboard.php">Dashboard</a></li>
                 <li><a href="../student/profile.php">Profile</a></li>
+                <li><a href="supervisor.php">  Supervisor Information </a></li>
                 <li><a href="../student/add-log.php">Add Log Entry</a></li>
                 <li><a href="../student/view-logs.php">View Logs</a></li>
                 <li><a href="../student/weekly-evidence.php">Weekly Evidence</a></li>
                 <li><a href="weekly-evidence-list.php">My Evidence</a></li>
+                <li> <a href="progress.php">Progress </a></li>
+                <li> <a href="evaluation.php"> Evaluation Results   </a></li>
                 <li><a href="../student/report.php">Reports</a></li>
                 <li><a href="messages.php"> Messages</a>
                 <li><a href="../student/notifications.php">Notifications</a></li>
@@ -73,4 +76,3 @@ if(isset($_SESSION['user_id'])){
         <div class="main-content">
 
 
-        

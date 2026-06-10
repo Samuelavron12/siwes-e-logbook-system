@@ -1208,6 +1208,303 @@ table a:hover{
     color:#6b7280;
 }
 
+/* ==========================================
+   STUDENT EVALUATION PAGE
+========================================== */
+
+.evaluation-result-page{
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.evaluation-result-page h2{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+}
+
+.evaluation-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.score-box{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid #e5e7eb;
+}
+
+.score-box h1{
+
+    font-size:50px;
+
+    color:#16a34a;
+}
+
+.score-box p{
+
+    color:#6b7280;
+}
+
+.evaluation-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin-bottom:25px;
+}
+
+.score-item{
+
+    background:#f9fafb;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.score-item strong{
+
+    color:#2563eb;
+}
+
+.remarks-box{
+
+    background:#f9fafb;
+
+    padding:20px;
+
+    border-radius:10px;
+}
+
+.remarks-box h3{
+
+    margin-bottom:10px;
+
+    color:#2563eb;
+}
+
+
+/* ==========================================
+   SUPERVISOR INFORMATION PAGE
+========================================== */
+
+.supervisor-page{
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.supervisor-page h2{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+}
+
+.supervisor-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    margin-bottom:20px;
+}
+
+.supervisor-card img{
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:3px solid #2563eb;
+}
+
+.supervisor-info{
+
+    flex:1;
+}
+
+.supervisor-info h3{
+
+    margin-bottom:12px;
+
+    color:#111827;
+}
+
+.supervisor-info p{
+
+    margin-bottom:8px;
+
+    color:#4b5563;
+}
+
+.bio-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.bio-card h3{
+
+    margin-bottom:15px;
+
+    color:#2563eb;
+}
+
+.bio-card p{
+
+    line-height:1.8;
+}
+
+
+/* ==========================================
+   SIWES PROGRESS PAGE
+========================================== */
+
+.progress-page{
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.progress-page h2{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+}
+
+.progress-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    margin-bottom:25px;
+}
+
+.progress-card h3{
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:#111827;
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:18px;
+
+    background:#e5e7eb;
+
+    border-radius:30px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:#16a34a;
+}
+
+.progress-checklist{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.progress-checklist p{
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    background:#f9fafb;
+
+    border-radius:8px;
+
+    font-size:15px;
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-box{
+
+    background:#fff;
+
+    padding:30px;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    color:#6b7280;
+}
+
 /* MOBILE FIX */
 @media(max-width:768px){
 
@@ -1564,6 +1861,50 @@ table a:hover{
         width: 160px;
     }
 
+    /* evaluation and all that  */
+    .evaluation-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .score-box h1{
+
+        font-size:38px;
+    }
+
+    .supervisor-card{
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .supervisor-card img{
+
+        width:100px;
+
+        height:100px;
+    }
+
+    .supervisor-info{
+
+        width:100%;
+    }
+
+    .progress-checklist p{
+
+        font-size:14px;
+    }
+
+    .evaluation-card,
+    .bio-card,
+    .supervisor-card,
+    .progress-card,
+    .progress-checklist{
+
+        padding:18px;
+    }
+
 }
 
 /* TABLET DEVICES */
@@ -1738,5 +2079,28 @@ table a:hover{
         height: 60px;
     }
     
+
+}
+
+@media(max-width:480px){
+
+    .score-box h1{
+
+        font-size:30px;
+    }
+
+    .supervisor-card img{
+
+        width:90px;
+
+        height:90px;
+    }
+
+    .progress-page h2,
+    .supervisor-page h2,
+    .evaluation-result-page h2{
+
+        font-size:22px;
+    }
 
 }
