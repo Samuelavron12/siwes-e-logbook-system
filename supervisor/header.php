@@ -24,7 +24,64 @@ if(isset($_SESSION['user_id'])){
 
     );
 }
+
+
+
 ?>
+<?php
+
+$count = mysqli_fetch_assoc(
+
+mysqli_query(
+
+$conn,
+
+"
+
+SELECT COUNT(*) total
+
+FROM notifications
+
+WHERE
+
+user_id='".$_SESSION['user_id']."'
+
+AND
+
+is_read='0'
+
+"
+
+)
+
+);
+
+?>
+
+
+<li>
+
+<a href="notifications.php">
+
+Notifications
+
+<?php
+
+if($count['total'] > 0):
+
+?>
+
+<span class="badge">
+
+<?php echo $count['total']; ?>
+
+</span>
+
+<?php endif; ?>
+
+</a>
+
+</li>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +101,22 @@ if(isset($_SESSION['user_id'])){
 </head>
 
 <body>
+<div class="mobile-navbar">
 
+<h3>Supervisor</h3>
+
+<button
+class="menu-toggle"
+id="menuToggle">
+
+    ☰
+
+</button>
+
+</div>
 <div class="dashboard-container">
     <!-- SIDEBAR -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="logo">
             <h2>Supervisor panel</h2>
         </div>
@@ -61,6 +130,7 @@ if(isset($_SESSION['user_id'])){
             <li><a href="student-evaluation.php">Student Evaluation</a></li>
             <li> <a href="attendance-summary.php">attendance</a></li>
             <li> <a href="messages.php">  Messages </a></li>
+            <li> <a href="notifications.php">Notifications</a></li>
             <li><a href="announcements.php">Announcements</a></li>
             <li><a href="../auth/logout.php"> Logout</a></li>
         </ul>

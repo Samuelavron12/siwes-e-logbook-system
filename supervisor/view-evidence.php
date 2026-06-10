@@ -27,6 +27,7 @@ $query = mysqli_query(
 <div class="log-container">
 
     <h2>Student Weekly Evidence</h2>
+    <div class="table-scroll">
 
     <table>
 
@@ -80,6 +81,8 @@ $query = mysqli_query(
         <?php endwhile; ?>
 
     </table>
+    </div>
+
 
 </div>
 

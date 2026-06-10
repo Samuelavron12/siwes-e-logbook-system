@@ -1,15 +1,20 @@
-
 <?php
 
 require_once 'header.php';
 require_once '../config/db.php';
+
 $supervisor_id = $_SESSION['user_id'];
 
-$selected_student = isset($_GET['student'])
-? $_GET['student']
+$selected_student =
+isset($_GET['student'])
+? (int)$_GET['student']
 : 0;
 
-/* ASSIGNED STUDENTS */
+/*
+|--------------------------------------------------------------------------
+| ASSIGNED STUDENTS
+|--------------------------------------------------------------------------
+*/
 
 $students = mysqli_query(
 
@@ -19,49 +24,62 @@ $students = mysqli_query(
 
     SELECT
 
-    u.user_id,
-    u.full_name,
-    u.last_login
+        u.user_id,
+        u.full_name,
+        u.last_login
+
     FROM student_supervisors ss
 
-    JOIN users u
+    INNER JOIN users u
 
     ON ss.student_id = u.user_id
 
-    WHERE ss.supervisor_id = '$supervisor_id'
+    WHERE ss.supervisor_id='$supervisor_id'
 
     ORDER BY u.full_name ASC
 
     "
 
 );
+
 ?>
 
 <div class="chat-container">
 
-    <!-- LEFT SIDE -->
+<?php if(!$selected_student): ?>
+
+    <!-- STUDENT LIST -->
 
     <div class="chat-users">
 
         <h3>Students</h3>
 
         <?php while($stu = mysqli_fetch_assoc($students)): ?>
+
             <?php
 
-            $last = strtotime($stu['last_login']);
+            $last =
+            strtotime($stu['last_login']);
 
             $is_online =
-
             (time() - $last) < 300;
 
             ?>
+
             <a
-                class="student-link"
-                href="messages.php?student=<?php echo $stu['user_id']; ?>">
 
-                    <?php echo $stu['full_name']; ?>
+            class="student-link"
 
-                    <span class="<?php echo $is_online ? 'online' : 'offline'; ?>"> <?php echo $is_online ? 'Online' : 'Offline'; ?> </span>
+            href="messages.php?student=<?php echo $stu['user_id']; ?>">
+
+                <?php echo $stu['full_name']; ?>
+
+                <span
+                class="<?php echo $is_online ? 'online' : 'offline'; ?>">
+
+                    <?php echo $is_online ? 'Online' : 'Offline'; ?>
+
+                </span>
 
             </a>
 
@@ -69,206 +87,222 @@ $students = mysqli_query(
 
     </div>
 
-    <!-- RIGHT SIDE -->
+<?php else: ?>
+
+    <!-- CHAT ONLY -->
 
     <div class="chat-box">
 
-        <?php if($selected_student): ?>
+        <a
+        href="messages.php"
+        class="back-chat">
 
-            <?php
+            ← Back
 
-            mysqli_query(
+        </a>
 
-                $conn,
+        <?php
 
-                "
+        mysqli_query(
 
-                UPDATE messages
+            $conn,
 
-                SET is_read='1'
+            "
 
-                WHERE receiver_id='$supervisor_id'
+            UPDATE messages
 
-                AND sender_id='$selected_student'
+            SET is_read='1'
 
-                "
+            WHERE receiver_id='$supervisor_id'
 
-            );
+            AND sender_id='$selected_student'
 
-            $messages = mysqli_query(
+            "
 
-                $conn,
+        );
 
-                "
+        $messages = mysqli_query(
 
-                SELECT *
+            $conn,
 
-                FROM messages
+            "
 
-                WHERE
+            SELECT *
 
-                (
+            FROM messages
 
-                    sender_id='$supervisor_id'
+            WHERE
 
-                    AND
+            (
 
-                    receiver_id='$selected_student'
+                sender_id='$supervisor_id'
 
-                )
+                AND receiver_id='$selected_student'
 
-                OR
+            )
 
-                (
+            OR
 
-                    sender_id='$selected_student'
+            (
 
-                    AND
+                sender_id='$selected_student'
 
-                    receiver_id='$supervisor_id'
+                AND receiver_id='$supervisor_id'
 
-                )
+            )
 
-                ORDER BY created_at ASC
+            ORDER BY created_at ASC
 
-                "
+            "
 
-            );
+        );
 
-            ?>
+        ?>
 
-            <div class="chat-messages">
+        <div class="chat-messages">
 
-                <?php while($msg = mysqli_fetch_assoc($messages)): ?>
+            <?php while($msg = mysqli_fetch_assoc($messages)): ?>
 
-                    <?php
+                <?php
 
-                    $mine =
-                    $msg['sender_id']
-                    ==
-                    $supervisor_id;
+                $mine =
+                $msg['sender_id']
+                ==
+                $supervisor_id;
 
-                    ?>
+                ?>
 
-                    <div class="message-row <?php echo $mine ? 'sent' : 'received'; ?>">
+                <div
+                class="message-row <?php echo $mine ? 'sent' : 'received'; ?>">
 
-                        <div class="message-bubble">
+                    <div class="message-bubble">
 
-                            <?php echo nl2br($msg['message']); ?>
-                            <?php if(!empty($msg['attachment'])): ?>
+                        <?php echo nl2br($msg['message']); ?>
 
-                                <?php
+                        <?php if(!empty($msg['attachment'])): ?>
 
-                                $file = $msg['attachment'];
+                            <?php
 
-                                $ext = strtolower(
+                            $file =
+                            $msg['attachment'];
 
-                                    pathinfo(
+                            $ext =
+                            strtolower(
 
-                                        $file,
+                                pathinfo(
 
-                                        PATHINFO_EXTENSION
+                                    $file,
 
-                                    )
+                                    PATHINFO_EXTENSION
 
-                                );
+                                )
 
-                                ?>
+                            );
 
-                                <?php if(
-                                    $ext == 'jpg' ||
-                                    $ext == 'jpeg' ||
-                                    $ext == 'png' ||
-                                    $ext == 'gif' ||
-                                    $ext == 'webp'
-                                ): ?>
+                            ?>
 
-                                    <div class="chat-image">
+                            <?php if(
 
-                                    <a
-                                        href="../uploads/messages/<?php echo $file; ?>"
-                                        target="_blank">
+                                $ext == 'jpg' ||
+                                $ext == 'jpeg' ||
+                                $ext == 'png' ||
+                                $ext == 'gif' ||
+                                $ext == 'webp'
 
-                                            <img
+                            ): ?>
 
-                                            src="../uploads/messages/<?php echo $file; ?>"
+                                <div class="chat-image">
 
-                                            alt="attachment">
+                                    <img
 
-                                        </a>
-                                    </div>
+                                    src="../uploads/messages/<?php echo $file; ?>"
 
-                                <?php else: ?>
+                                    alt="attachment">
 
-                                    <a class="attachment-link" href="../uploads/messages/<?php echo $file; ?>" target="_blank"> Download File</a>
+                                </div>
 
-                                <?php endif; ?>
+                            <?php else: ?>
+
+                                <a
+
+                                class="attachment-link"
+
+                                href="../uploads/messages/<?php echo $file; ?>"
+
+                                target="_blank">
+
+                                    Download File
+
+                                </a>
 
                             <?php endif; ?>
 
-                            <small>
+                        <?php endif; ?>
 
-                                <?php echo date(
+                        <small>
 
-                                    "d M Y h:i A",
+                            <?php
 
-                                    strtotime($msg['created_at'])
+                            echo date(
 
-                                ); ?>
+                                "d M Y h:i A",
 
-                            </small>
+                                strtotime(
 
-                        </div>
+                                    $msg['created_at']
+
+                                )
+
+                            );
+
+                            ?>
+
+                        </small>
 
                     </div>
 
-                <?php endwhile; ?>
+                </div>
 
-            </div>
+            <?php endwhile; ?>
 
-            <form
+        </div>
 
-            action="send-message.php"
+        <form
 
-            method="POST"
+        action="send-message.php"
 
-            class="chat-form">
+        method="POST"
 
-                <input
+        class="chat-form">
 
-                type="hidden"
+            <input
 
-                name="receiver_id"
+            type="hidden"
 
-                value="<?php echo $selected_student; ?>">
+            name="receiver_id"
 
-                <textarea
+            value="<?php echo $selected_student; ?>">
 
-                name="message"
+            <textarea
 
-                required
+            name="message"
 
-                placeholder="Enter Text Here"></textarea>
+            placeholder="Type message..."
 
-                <button type="submit">
+            required></textarea>
 
-                    Send
+            <button type="submit" class="smt">
 
-                </button>
+                Send
 
-            </form>
+            </button>
 
-        <?php else: ?>
-
-            <div class="empty-chat">
-
-                Select a student to start chatting.
-
-            </div>
-
-        <?php endif; ?>
+        </form>
 
     </div>
+
+<?php endif; ?>
+
 
 </div>
 
